@@ -1,4 +1,4 @@
-package com.example.sqliteroom;
+package com.example.room;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,31 +14,38 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class AddTaskDialog extends DialogFragment {
-    private AddNewTaskCallback callback;
+public class EditTaskDialog extends DialogFragment {
+    private EditTaskCallback callback;
+    private String title;
+    private Task task;
+
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        callback = (AddNewTaskCallback) context;
+        callback = (EditTaskCallback) context;
+        task = getArguments().getParcelable("task");
+        if (task==null){
+            dismiss();
+        }
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_task, null, false);
-         final TextInputEditText titleEt = view.findViewById(R.id.et_dialog_title);
-         final TextInputLayout inputLayout = view.findViewById(R.id.etl_dialog_title);
-        View saveBtn = view.findViewById(R.id.btn_dialog_save);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edit_task, null, false);
+        final TextInputEditText titleEt = view.findViewById(R.id.et_dialogEdit_title);
+        titleEt.setText(task.getTitle());
+        final TextInputLayout inputLayout = view.findViewById(R.id.etl_dialogEdit_title);
+        View saveBtn = view.findViewById(R.id.btn_dialogEdit_save);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (titleEt.length() > 0) {
-                    Task task = new Task();
                     task.setTitle(titleEt.getText().toString());
                     task.setCompleted(false);
-                    callback.onNewTask(task);
+                    callback.onEditTask(task);
                     dismiss();
                 } else {
                     inputLayout.setError("عنوان نباید خالی باشد");
@@ -49,7 +56,7 @@ public class AddTaskDialog extends DialogFragment {
         return builder.create();
     }
 
-    public interface AddNewTaskCallback{
-        void onNewTask(Task task);
+    public interface EditTaskCallback {
+        void onEditTask(Task task);
     }
 }

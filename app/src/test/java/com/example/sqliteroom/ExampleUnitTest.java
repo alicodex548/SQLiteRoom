@@ -1,4 +1,4 @@
-package com.example.sqliteroom;
+package com.example.room;
 
 import org.junit.Test;
 

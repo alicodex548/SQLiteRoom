@@ -1,4 +1,4 @@
-package com.example.sqliteroom;
+package com.example.room;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/AliCodex/AndroidStudioProjects/RoomLibrary/app/src/main/res/layout/activity_main.xml" value="0.10208333333333333" />
+        <entry key="..\:/Users/AliCodex/AndroidStudioProjects/RoomLibrary/app/src/main/res/layout/item_task.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/AliCodex/AndroidStudioProjects/SQLiteRoom/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/AliCodex/AndroidStudioProjects/SQLiteRoom/app/src/main/res/layout/dialog_task.xml" value="0.264" />
       </map>
